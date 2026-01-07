@@ -10,8 +10,8 @@ Avant de commencer, assurez-vous d'avoir installé les éléments suivants sur v
 
 Il faut lancer `docker-compose up --build`
 
--   Frontend : http://localhost:3000 (ou port spécifié)
--   API : http://localhost:8080
+-   API : http://localhost:3000 (ou port spécifié)
+-   Frontend : http://localhost:8080
 -   Base de données : Accessible via le port interne 5432 (par défaut)
 
 # Description des services, des ports utilisés, des variables d'environnement
