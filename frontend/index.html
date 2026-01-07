@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Product CRUD Tester</title>
+        <link rel="stylesheet" href="styles.css" />
+        <script src="index.js" defer></script>
+    </head>
+    <body>
+        <h1>Product API Tester</h1>
+
+        <section>
+            <h3>1. Create Product (POST /)</h3>
+            <div class="form-group">
+                <input type="text" id="name" placeholder="Product Name" />
+                <textarea
+                    id="description"
+                    placeholder="Product Description"
+                ></textarea>
+                <input type="number" id="price" placeholder="Price" />
+                <input
+                    type="number"
+                    id="stock_qty"
+                    placeholder="Stock Quantity"
+                />
+            </div>
+            <button onclick="createProduct()">Submit Product</button>
+        </section>
+
+        <section>
+            <h3>2. Inventory (GET /)</h3>
+            <button onclick="getAll()">Refresh List</button>
+            <div id="product-list"></div>
+        </section>
+
+        <section>
+            <h3>Server Response Log</h3>
+            <pre id="response-output">No requests sent yet...</pre>
+        </section>
+    </body>
+</html>

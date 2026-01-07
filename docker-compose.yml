@@ -1,0 +1,66 @@
+services:
+    frontend:
+        image: nginx:alpine
+        container_name: frontend_dev
+        ports:
+            - "8080:80"
+        volumes:
+            - ./frontend:/usr/share/nginx/html:ro
+        networks:
+            - net
+
+    api:
+        build: ./backend
+        container_name: backend_api
+        env_file:
+            - ./backend/.env
+        environment:
+            - PORT=3000
+            - DB_PG_HOST=db
+            - DB_PG_USER=${DB_PG_USER:-postgres}
+            - DB_PG_PASSWORD=${DB_PG_PASSWORD:-1234}
+            - DB_PG_DATABASE=${DB_PG_DATABASE:-products_api}
+            - DB_PG_PORT=5432
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./backend:/app
+            - /app/node_modules
+        depends_on:
+            db:
+                condition: service_healthy
+        restart: always
+        networks:
+            - net
+
+    db:
+        image: postgres:15-alpine
+        container_name: postgres_db
+        restart: always
+        env_file:
+            - ./backend/.env
+        environment:
+            - POSTGRES_USER=${DB_PG_USER:-postgres}
+            - POSTGRES_PASSWORD=${DB_PG_PASSWORD:-1234}
+            - POSTGRES_DB=${DB_PG_DATABASE:-products_api}
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+            - ./backend/src/data/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+        networks:
+            - net
+        healthcheck:
+            test:
+                [
+                    "CMD-SHELL",
+                    "pg_isready -U ${DB_PG_USER:-postgres} -d ${DB_PG_DATABASE:-products_api}",
+                ]
+            interval: 5s
+            timeout: 5s
+            retries: 5
+
+networks:
+    net:
+        driver: bridge
+
+volumes:
+    postgres_data:

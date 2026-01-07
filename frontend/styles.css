@@ -1,0 +1,77 @@
+body {
+    font-family: sans-serif;
+    background: #222;
+    color: #fff;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+section {
+    border: 1px solid #444;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background: #2a2a2a;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+input,
+textarea {
+    margin: 5px 0;
+    display: block;
+    padding: 8px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 4px;
+    border: 1px solid #444;
+    background: #333;
+    color: #fff;
+}
+
+button {
+    cursor: pointer;
+    padding: 8px 15px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.delete-btn {
+    background: #dc3545;
+}
+
+.delete-btn:hover {
+    background: #a71d2a;
+}
+
+pre {
+    background: #000;
+    padding: 10px;
+    overflow: auto;
+    max-height: 300px;
+    border: 1px solid #555;
+    color: #0f0;
+}
+
+.product-card {
+    border-bottom: 1px solid #444;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
